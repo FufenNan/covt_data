@@ -1,0 +1,65 @@
+
+Lmod is automatically replacing "gcc/14.2.0" with "gcc-native/12.3".
+
+AWS OFI NCCL Plugin v1.6.0 loaded for CUDA 12.6.1
+This provides network transport ONLY - NCCL library from PyTorch
+Configured for Slingshot11/CXI interconnect
+CUDA 12.6.1 loaded with compatible AWS OFI NCCL plugin v1.6.0
+Plugin provides network transport - NCCL library from PyTorch
+Use with python/miniforge3_pytorch/2.7.0 or equivalent for best compatibility
+
+Activating Modules:
+  1) cray-libsci/24.07.0     2) cray-mpich/8.1.30
+
+
+Lmod is automatically replacing "gcc-native/12.3" with "gcc/14.2.0".
+
+
+Inactive Modules:
+  1) cray-libsci     2) cray-mpich
+
+AWS OFI NCCL Plugin v1.14.2 loaded (Cray PE 25.5)
+This provides network transport ONLY - NCCL library from PyTorch
+Configured for Slingshot11/CXI interconnect
+Built with: libfabric 2.2.0rc1, CUDA 12.9
+Lmod has detected the following error: The following module(s) are unknown:
+"libfabric/2.2.0rc1"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore_cache load "libfabric/2.2.0rc1"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+Executing this command requires loading "libfabric/2.2.0rc1" which failed while
+processing the following module(s):
+
+    Module fullname                 Module Filename
+    ---------------                 ---------------
+    nccl-ofi-plugin/1.14.2-cuda129  /sw/user/modules/nccl-ofi-plugin/1.14.2-cuda129.lua
+
+
+[2026-02-05 01:07:44] WARNING - RUN - run.py: main - 217: --reuse is not set, will not reuse previous (before one day) temporary files
+/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/smp/file.py:510: UserWarning: --reuse is set, will reuse prediction file ./outputs/CoVT-7B-seg_depth_dino/T20260204_G3a3253ee/CoVT-7B-seg_depth_dino_CV-Bench-3D.xlsx
+  warnings.warn(f'--reuse is set, will reuse prediction file {prev_file}')
+/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/smp/file.py:523: UserWarning: --reuse-aux is set, will reuse auxiliary file ./outputs/CoVT-7B-seg_depth_dino/T20260204_G3a3253ee/CoVT-7B-seg_depth_dino_CV-Bench-3D_chatgpt-0125_result.pkl
+  warnings.warn(f'--reuse-aux is set, will reuse auxiliary file {f}')
+/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/smp/file.py:523: UserWarning: --reuse-aux is set, will reuse auxiliary file ./outputs/CoVT-7B-seg_depth_dino/T20260204_G3a3253ee/CoVT-7B-seg_depth_dino_CV-Bench-3D_acc.csv
+  warnings.warn(f'--reuse-aux is set, will reuse auxiliary file {f}')
+/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/smp/file.py:523: UserWarning: --reuse-aux is set, will reuse auxiliary file ./outputs/CoVT-7B-seg_depth_dino/T20260204_G3a3253ee/CoVT-7B-seg_depth_dino_CV-Bench-3D_chatgpt-0125_result.xlsx
+  warnings.warn(f'--reuse-aux is set, will reuse auxiliary file {f}')
+/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/smp/file.py:523: UserWarning: --reuse-aux is set, will reuse auxiliary file ./outputs/CoVT-7B-seg_depth_dino/T20260204_G3a3253ee/CoVT-7B-seg_depth_dino_CV-Bench-3D.xlsx
+  warnings.warn(f'--reuse-aux is set, will reuse auxiliary file {f}')
+[2026-02-05 01:07:46] INFO - RUN - run.py: main - 411: {'nproc': 4, 'verbose': True, 'retry': 3, 'model': 'chatgpt-0125'}
+/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/dataset/image_mcq.py:1204: UserWarning: OPENAI_API_KEY is not set properly, will use exact matching for evaluation
+  warnings.warn(
+[2026-02-05 01:07:46] INFO - RUN - run.py: main - 466: The evaluation of model CoVT-7B-seg_depth_dino x dataset CV-Bench-3D has finished! 
+[2026-02-05 01:07:46] INFO - RUN - run.py: main - 467: Evaluation Results:
+[2026-02-05 01:07:46] INFO - RUN - run.py: main - 473: 
+--------  ------------------
+split     3D
+Overall   0.8458333333333333
+Depth     0.8666666666666667
+Distance  0.825
+--------  ------------------

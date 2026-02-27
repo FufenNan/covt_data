@@ -210,3 +210,5 @@ __marimo__/
 /train/output/
 /train/scripts/*backup*
 /train/wandb/
+
+/train/logs/

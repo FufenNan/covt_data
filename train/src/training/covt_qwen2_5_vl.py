@@ -416,7 +416,6 @@ class AnchorModels():
         SIGLIP_MODEL_PATH = "google/siglip2-large-patch16-256"
         
         METACLIP_MODEL_PATH = "facebook/metaclip-h14-fullcc2.5b"
-        
         if "sam" in self.anchor_model_id:
             self.sam = sam_model_registry[SAM_MODEL_TYPE](checkpoint=SAM_CHECKPOINT)
             self.sam.eval()
@@ -561,7 +560,7 @@ class AnchorModels():
         # stability_score = [mask["stability_score"] for mask in masks]
         masks = [mask["segmentation"] for mask in masks if mask["stability_score"] > 0.95]
         num_masks = len(masks)
-        masks = torch.tensor(masks, dtype=torch.float, device=self.sam.device)
+        masks = torch.from_numpy(np.array(masks)).float().to(self.sam.device)
         return masks, num_masks
     
     def get_point_from_mask(self, image, mask):
@@ -666,7 +665,7 @@ class AnchorModels():
         # Filter by stability_score > 0.95
         masks = [mask["segmentation"].astype(np.float32) for mask in masks]
         num_masks = len(masks)
-        print(f'the number of masks: {num_masks}')
+        # print(f'the number of masks: {num_masks}')
         
         if num_masks > 0:
             masks = torch.tensor(masks, dtype=torch.float, device=self.sam.device)
@@ -841,6 +840,303 @@ class AnchorModels():
             return image_embeddings.detach()
         else:
             return None
+
+    def save_sam_rgb(self, image_path, save_path):
+        if "sam" not in self.anchor_model_id:
+            return
+            
+        if isinstance(image_path, str):
+            image = Image.open(image_path).convert('RGB')
+        else:
+            image = image_path
+            
+        # Get SAM masks
+        masks, num_masks = self.get_sam_mask_improved(image)
+        
+        # Create RGB image
+        if num_masks > 0:
+            # Convert masks to numpy array
+            masks_np = masks.cpu().numpy()
+            
+            # Create color image
+            h, w = masks_np.shape[1], masks_np.shape[2]
+            rgb_image = np.zeros((h, w, 3), dtype=np.uint8)
+            
+            # Assign different colors to each mask
+            colors = plt.cm.tab10(np.linspace(0, 1, num_masks))  # Generate different colors
+            
+            for i, mask in enumerate(masks_np):
+                color = colors[i][:3]  # RGB values
+                rgb_mask = (mask > 0.5).astype(np.uint8)
+                for c in range(3):
+                    rgb_image[:, :, c] = np.where(rgb_mask, 
+                                                color[c] * 255, 
+                                                rgb_image[:, :, c])
+            
+            # Save image
+            os.makedirs(os.path.dirname(save_path), exist_ok=True)
+            Image.fromarray(rgb_image).save(save_path)
+            print(f"SAM masks have been saved to {save_path}")
+        else:
+            print("No valid SAM masks detected")
+    
+    def save_depth_rgb(self, image_path, save_path):
+        if "depth" not in self.anchor_model_id:
+            print("Depth model not loaded")
+            return
+            
+        # Process input image
+        if isinstance(image_path, str):
+            image = Image.open(image_path).convert('RGB')
+        else:
+            image = image_path
+            
+        # Get depth features and depth map
+        _, _, depth_gt, _, _ = self.get_depth_features_and_gt(image)
+        
+        if depth_gt is not None:
+            # Convert depth tensor to numpy array
+            depth_np = depth_gt.squeeze().cpu().numpy()
+            
+            # Normalize to 0-255 range
+            depth_norm = (depth_np - depth_np.min()) / (depth_np.max() - depth_np.min() + 1e-8)
+            depth_norm = (depth_norm * 255).astype(np.uint8)
+            
+            # Apply color map
+            colored_depth = cv2.applyColorMap(depth_norm, cv2.COLORMAP_JET)
+            colored_depth = cv2.cvtColor(colored_depth, cv2.COLOR_BGR2RGB)
+            
+            os.makedirs(os.path.dirname(save_path), exist_ok=True)
+            Image.fromarray(colored_depth).save(save_path)
+            print(f"Depth map has been saved to {save_path}")
+        else:
+            print("Unable to generate depth map")
+    
+    def save_pidinet_rgb(self, image_path, save_path):
+        if "pidinet" not in self.anchor_model_id:
+            print("PidiNet model not loaded")
+            return
+            
+        # Process input image
+        if isinstance(image_path, str):
+            image = Image.open(image_path).convert('RGB')
+        else:
+            image = image_path
+            
+        # Get PidiNet edge
+        edge_output = self.get_pidinet_embed(image)
+        
+        if edge_output is not None:
+            # Convert edge tensor to numpy array
+            edge_np = torch.sigmoid(edge_output).squeeze().cpu().numpy()
+            
+            # Normalize to 0-255 range
+            edge_norm = (edge_np * 255).astype(np.uint8)
+            
+            # Convert to RGB image (edges in white, background in black)
+            rgb_edge = np.stack([edge_norm, edge_norm, edge_norm], axis=-1)
+            
+            # Save image
+            os.makedirs(os.path.dirname(save_path), exist_ok=True)
+            Image.fromarray(rgb_edge).save(save_path)
+            print(f"PidiNet edge image has been saved to {save_path}")
+        else:
+            print("Unable to generate PidiNet edge image")
+
+class AnchorOutputExtractor():
+    """
+    Inference-only utility for extracting and saving anchor model outputs.
+    No trainable parameters.
+    """
+
+    def __init__(self, anchor_model_id="sam+depth+pidinet+dino+SD+internvit+siglip+metaclip"):
+        self.anchor_model_id = anchor_model_id
+        self.anchor_models = AnchorModels(self.anchor_model_id)
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+        self.anchor_models.set_device(self.device)
+        self.anchor_models.set_float()
+
+        print(f"Anchor Output Extractor initialized with models: {self.anchor_model_id}")
+
+    def set_device(self, device):
+        self.device = device
+        self.anchor_models.set_device(device)
+
+    def extract_and_save_outputs(
+        self,
+        image_path,
+        save_dir="./anchor_outputs",
+        save_original=True,
+        save_features=False
+    ):
+        if isinstance(image_path, str):
+            image = Image.open(image_path).convert('RGB')
+            image_name = os.path.splitext(os.path.basename(image_path))[0]
+        else:
+            image = image_path
+            image_name = "image"
+
+        os.makedirs(save_dir, exist_ok=True)
+
+        # print(f"Processing image: {image_name}")
+
+        # if save_original:
+        #     original_save_path = os.path.join(save_dir, f"{image_name}_original.png")
+        #     image.save(original_save_path)
+        #     print(f"[OK] Original image saved: {original_save_path}")
+
+        if "sam" in self.anchor_model_id:
+            try:
+                sam_save_path = os.path.join(save_dir, f"{image_name}_sam.png")
+                self.anchor_models.save_sam_rgb(image, sam_save_path)
+
+                # if save_features:
+                #     sam_embed = self.anchor_models.get_sam_embed(image)
+                #     if sam_embed is not None:
+                #         sam_feature_path = os.path.join(save_dir, f"{image_name}_sam_features.npy")
+                #         np.save(sam_feature_path, sam_embed.cpu().numpy())
+                #         print(f"[OK] SAM features saved: {sam_feature_path}")
+            except Exception as e:
+                print(f"[ERROR] SAM processing failed: {e}")
+
+        if "depth" in self.anchor_model_id:
+            try:
+                depth_save_path = os.path.join(save_dir, f"{image_name}_depth.png")
+                self.anchor_models.save_depth_rgb(image, depth_save_path)
+
+                # if save_features:
+                #     depth_embed = self.anchor_models.get_depth_embed(image)
+                #     if depth_embed is not None:
+                #         depth_feature_path = os.path.join(save_dir, f"{image_name}_depth_features.npy")
+                #         np.save(depth_feature_path, depth_embed.cpu().numpy())
+                #         print(f"[OK] Depth features saved: {depth_feature_path}")
+            except Exception as e:
+                print(f"[ERROR] Depth processing failed: {e}")
+
+        if "pidinet" in self.anchor_model_id:
+            try:
+                pidinet_save_path = os.path.join(save_dir, f"{image_name}_pidinet.png")
+                self.anchor_models.save_pidinet_rgb(image, pidinet_save_path)
+
+                # if save_features:
+                #     pidinet_embed = self.anchor_models.get_pidinet_embed(image)
+                #     if pidinet_embed is not None:
+                #         pidinet_feature_path = os.path.join(save_dir, f"{image_name}_pidinet_features.npy")
+                #         np.save(pidinet_feature_path, pidinet_embed.cpu().numpy())
+                #         print(f"[OK] PidiNet features saved: {pidinet_feature_path}")
+            except Exception as e:
+                print(f"[ERROR] PidiNet processing failed: {e}")
+
+        # if "dino" in self.anchor_model_id:
+        #     try:
+        #         if save_features:
+        #             dino_embed = self.anchor_models.get_dino_embed(image, self.device)
+        #             if dino_embed is not None:
+        #                 dino_feature_path = os.path.join(save_dir, f"{image_name}_dino_features.npy")
+        #                 np.save(dino_feature_path, dino_embed.cpu().numpy())
+        #                 print(f"[OK] DINOv2 features saved: {dino_feature_path}")
+
+        #                 dino_vis_path = os.path.join(save_dir, f"{image_name}_dino_tsne.png")
+        #                 self._save_dino_tsne_visualization(dino_embed, dino_vis_path)
+        #     except Exception as e:
+        #         print(f"[ERROR] DINOv2 processing failed: {e}")
+
+        # if "SD" in self.anchor_model_id:
+        #     try:
+        #         if save_features:
+        #             sd_embed = self.anchor_models.get_SD_embed(image)
+        #             if sd_embed is not None:
+        #                 sd_feature_path = os.path.join(save_dir, f"{image_name}_sd_features.npy")
+        #                 np.save(sd_feature_path, sd_embed.cpu().numpy())
+        #                 print(f"[OK] Stable Diffusion features saved: {sd_feature_path}")
+        #     except Exception as e:
+        #         print(f"[ERROR] Stable Diffusion processing failed: {e}")
+
+        # if "internvit" in self.anchor_model_id:
+        #     try:
+        #         if save_features:
+        #             internvit_embed = self.anchor_models.get_internvit_embed(image)
+        #             if internvit_embed is not None:
+        #                 internvit_feature_path = os.path.join(save_dir, f"{image_name}_internvit_features.npy")
+        #                 np.save(internvit_feature_path, internvit_embed.cpu().numpy())
+        #                 print(f"[OK] InternViT features saved: {internvit_feature_path}")
+        #     except Exception as e:
+        #         print(f"[ERROR] InternViT processing failed: {e}")
+
+        # if "siglip" in self.anchor_model_id:
+        #     try:
+        #         if save_features:
+        #             siglip_embed = self.anchor_models.get_siglip_embed(image)
+        #             if siglip_embed is not None:
+        #                 siglip_feature_path = os.path.join(save_dir, f"{image_name}_siglip_features.npy")
+        #                 np.save(siglip_feature_path, siglip_embed.cpu().numpy())
+        #                 print(f"[OK] SigLIP features saved: {siglip_feature_path}")
+        #     except Exception as e:
+        #         print(f"[ERROR] SigLIP processing failed: {e}")
+
+        # if "metaclip" in self.anchor_model_id:
+        #     try:
+        #         if save_features:
+        #             metaclip_embed = self.anchor_models.get_metaclip_embed(image)
+        #             if metaclip_embed is not None:
+        #                 metaclip_feature_path = os.path.join(save_dir, f"{image_name}_metaclip_features.npy")
+        #                 np.save(metaclip_feature_path, metaclip_embed.cpu().numpy())
+        #                 print(f"[OK] MetaCLIP features saved: {metaclip_feature_path}")
+        #     except Exception as e:
+        #         print(f"[ERROR] MetaCLIP processing failed: {e}")
+
+        # print(f"All outputs processed and saved to: {save_dir}")
+    def batch_process_images(
+        self,
+        image_paths,
+        save_dir="./anchor_outputs",
+        batch_size=None,
+        save_original=True,
+        save_features=False,
+    ):
+        if not image_paths:
+            print("No images to process")
+            return
+        
+        print(f"Starting batch processing of {len(image_paths)} images")
+        print(f"Batch size: {batch_size}")
+        print(f"Save directory: {save_dir}")
+        print(f"Enabled models: {self.anchor_model_id}")
+        
+        os.makedirs(save_dir, exist_ok=True)
+        total_images = len(image_paths)
+        processed_count = 0
+        error_count = 0
+        error_details = []
+        from tqdm import tqdm
+        for start_idx in tqdm(range(0, total_images, batch_size), desc="Batches"):
+            end_idx = min(start_idx + batch_size, total_images)
+            batch_paths = image_paths[start_idx:end_idx]
+            for i, image_path in enumerate(batch_paths):
+                try:
+                    self.extract_and_save_outputs(
+                        image_path=image_path,
+                        save_dir=save_dir,
+                        save_original=save_original,
+                        save_features=save_features
+                    )
+                    processed_count += 1
+                        
+                except Exception as e:
+                    error_count += 1
+                    error_msg = f"Failed to process {image_path}: {str(e)}"
+                    error_details.append(error_msg)
+                    print(f"[ERROR] {error_msg}")
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+            import pdb; pdb.set_trace()
+        print("\nBatch processing completed.")
+        print(f"Total images processed: {processed_count}/{total_images}")
+        if error_count > 0:
+            print(f"Total errors: {error_count}")
+            for detail in error_details:
+                print(f" - {detail}")
 
 
 class TaTDistillLoss(nn.Module):
@@ -1946,6 +2242,43 @@ class CoVTForConditionalGeneration(Qwen2_5_VLPreTrainedModel, GenerationMixin):
         video_nums = torch.sum(vision_first_mask & video_mask, dim=1)
 
         return image_nums, video_nums
+
+    def save_anchor_outputs_to_rgb(self, image_path, save_dir="./anchor_outputs"):
+        if self.anchor_models is None:
+            print("Anchor models is not initialized.")
+            return
+            
+        # Ensure the image is in PIL Image format
+        if isinstance(image_path, str):
+            image = Image.open(image_path).convert('RGB')
+            image_name = os.path.splitext(os.path.basename(image_path))[0]
+        else:
+            image = image_path
+            image_name = "image"
+            
+        os.makedirs(save_dir, exist_ok=True)
+        
+        # Save original image
+        original_save_path = os.path.join(save_dir, f"{image_name}_original.png")
+        image.save(original_save_path)
+        print(f"Original image saved to {original_save_path}")
+        
+        # Save SAM output
+        if "sam" in self.anchor_model_id:
+            sam_save_path = os.path.join(save_dir, f"{image_name}_sam_masks.png")
+            self.anchor_models.save_sam_rgb(image, sam_save_path)
+            
+        # Save depth output
+        if "depth" in self.anchor_model_id:
+            depth_save_path = os.path.join(save_dir, f"{image_name}_depth.png")
+            self.anchor_models.save_depth_rgb(image, depth_save_path)
+            
+        # Save pidinet output
+        if "pidinet" in self.anchor_model_id:
+            pidinet_save_path = os.path.join(save_dir, f"{image_name}_pidinet_edges.png")
+            self.anchor_models.save_pidinet_rgb(image, pidinet_save_path)
+            
+        print(f"All anchor model outputs have been saved to {save_dir}")
 
     def _expand_inputs_for_generation(
         self,

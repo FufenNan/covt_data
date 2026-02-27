@@ -671,6 +671,82 @@ class SupervisedDataset(Dataset):
         return data_dict
 
 
+class ImagePathDataset(Dataset):
+    """Dataset that returns image file paths for feature extraction."""
+
+    def __init__(
+        self,
+        data_path: str | list,
+        data_args: DataArguments,
+        anchor_model_id=None,
+    ):
+        super(ImagePathDataset, self).__init__()
+        if isinstance(data_path, str):
+            list_data_dict = json.load(open(data_path, "r"))
+        else:
+            list_data_dict = data_path
+
+        self.list_data_dict = list_data_dict
+        self.data_args = data_args
+        self.anchor_model_id = anchor_model_id
+        
+    def __len__(self):
+        return len(self.list_data_dict)
+
+    def __getitem__(self, i) -> Dict[str, any]:
+        sources = self.list_data_dict[i]
+        
+        # Extract image file paths
+        image_files = None
+        if "image" in sources:
+            image_files = sources["image"]
+            image_folder = self.data_args.image_folder
+            
+            if isinstance(image_files, str):
+                # Single image path
+                if not os.path.exists(image_files) and image_folder:
+                    if not image_files.startswith("http"):
+                        image_files = os.path.join(image_folder, image_files)
+            else:
+                # Multiple image paths
+                processed_files = []
+                for image_file in image_files:
+                    if not os.path.exists(image_file) and image_folder:
+                        if not image_file.startswith("http"):
+                            image_file = os.path.join(image_folder, image_file)
+                    processed_files.append(image_file)
+                image_files = processed_files
+        
+        # Extract video file paths if present
+        video_files = None
+        if "video" in sources:
+            video_files = sources["video"]
+            video_folder = self.data_args.image_folder  # Using same folder for videos
+            
+            if isinstance(video_files, str):
+                if not os.path.exists(video_files) and video_folder:
+                    if not video_files.startswith("http"):
+                        video_files = os.path.join(video_folder, video_files)
+            else:
+                processed_files = []
+                for video_file in video_files:
+                    if not os.path.exists(video_file) and video_folder:
+                        if not video_file.startswith("http"):
+                            video_file = os.path.join(video_folder, video_file)
+                    processed_files.append(video_file)
+                video_files = processed_files
+        
+        # Return data dictionary with file paths
+        data_dict = {
+            'image': image_files,
+            'video': video_files,
+            'conversations': sources.get('conversations', []),
+            'source': sources
+        }
+        
+        return data_dict
+
+
 class DataCollatorForSupervisedDataset(object):
     """Collate examples for supervised fine-tuning."""
 

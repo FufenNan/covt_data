@@ -1,0 +1,54 @@
+
+Lmod is automatically replacing "gcc/14.2.0" with "gcc-native/12.3".
+
+AWS OFI NCCL Plugin v1.6.0 loaded for CUDA 12.6.1
+This provides network transport ONLY - NCCL library from PyTorch
+Configured for Slingshot11/CXI interconnect
+CUDA 12.6.1 loaded with compatible AWS OFI NCCL plugin v1.6.0
+Plugin provides network transport - NCCL library from PyTorch
+Use with python/miniforge3_pytorch/2.7.0 or equivalent for best compatibility
+
+Activating Modules:
+  1) cray-libsci/24.07.0     2) cray-mpich/8.1.30
+
+
+Lmod is automatically replacing "gcc-native/12.3" with "gcc/14.2.0".
+
+
+Inactive Modules:
+  1) cray-libsci     2) cray-mpich
+
+AWS OFI NCCL Plugin v1.14.2 loaded (Cray PE 25.5)
+This provides network transport ONLY - NCCL library from PyTorch
+Configured for Slingshot11/CXI interconnect
+Built with: libfabric 2.2.0rc1, CUDA 12.9
+Lmod has detected the following error: The following module(s) are unknown:
+"libfabric/2.2.0rc1"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore_cache load "libfabric/2.2.0rc1"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+Executing this command requires loading "libfabric/2.2.0rc1" which failed while
+processing the following module(s):
+
+    Module fullname                 Module Filename
+    ---------------                 ---------------
+    nccl-ofi-plugin/1.14.2-cuda129  /sw/user/modules/nccl-ofi-plugin/1.14.2-cuda129.lua
+
+
+WARNING: overwriting environment variables set in the machine
+overwriting variable ['LD_LIBRARY_PATH', 'PATH']
+Traceback (most recent call last):
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/run.py", line 42, in <module>
+    from vlmeval.config import supported_VLM
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/__init__.py", line 10, in <module>
+    from .smp import *
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/smp/__init__.py", line 1, in <module>
+    from .file import *
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/smp/file.py", line 11, in <module>
+    import validators
+ModuleNotFoundError: No module named 'validators'

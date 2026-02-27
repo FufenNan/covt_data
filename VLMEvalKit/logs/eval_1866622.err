@@ -1,0 +1,62 @@
+
+Lmod is automatically replacing "gcc/14.2.0" with "gcc-native/12.3".
+
+AWS OFI NCCL Plugin v1.6.0 loaded for CUDA 12.6.1
+This provides network transport ONLY - NCCL library from PyTorch
+Configured for Slingshot11/CXI interconnect
+CUDA 12.6.1 loaded with compatible AWS OFI NCCL plugin v1.6.0
+Plugin provides network transport - NCCL library from PyTorch
+Use with python/miniforge3_pytorch/2.7.0 or equivalent for best compatibility
+
+Activating Modules:
+  1) cray-libsci/24.07.0     2) cray-mpich/8.1.30
+
+
+Lmod is automatically replacing "gcc-native/12.3" with "gcc/14.2.0".
+
+
+Inactive Modules:
+  1) cray-libsci     2) cray-mpich
+
+AWS OFI NCCL Plugin v1.14.2 loaded (Cray PE 25.5)
+This provides network transport ONLY - NCCL library from PyTorch
+Configured for Slingshot11/CXI interconnect
+Built with: libfabric 2.2.0rc1, CUDA 12.9
+Lmod has detected the following error: The following module(s) are unknown:
+"libfabric/2.2.0rc1"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore_cache load "libfabric/2.2.0rc1"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+Executing this command requires loading "libfabric/2.2.0rc1" which failed while
+processing the following module(s):
+
+    Module fullname                 Module Filename
+    ---------------                 ---------------
+    nccl-ofi-plugin/1.14.2-cuda129  /sw/user/modules/nccl-ofi-plugin/1.14.2-cuda129.lua
+
+
+W0204 01:17:08.990000 3641268 /work/nvme/bdqf/william/.conda/envs/vlmeval/lib/python3.10/site-packages/torch/distributed/run.py:852] 
+W0204 01:17:08.990000 3641268 /work/nvme/bdqf/william/.conda/envs/vlmeval/lib/python3.10/site-packages/torch/distributed/run.py:852] *****************************************
+W0204 01:17:08.990000 3641268 /work/nvme/bdqf/william/.conda/envs/vlmeval/lib/python3.10/site-packages/torch/distributed/run.py:852] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0204 01:17:08.990000 3641268 /work/nvme/bdqf/william/.conda/envs/vlmeval/lib/python3.10/site-packages/torch/distributed/run.py:852] *****************************************
+[2026-02-04 01:18:09] WARNING - RUN - run.py: main - 217: --reuse is not set, will not reuse previous (before one day) temporary files
+/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.
+  return func(*args, **kwargs)
+[rank2]:[W204 01:18:13.734070687 ProcessGroupNCCL.cpp:5138] Guessing device ID based on global rank. This can cause a hang if rank to GPU mapping is heterogeneous. You can specify device_id in init_process_group()
+[rank3]:[W204 01:18:13.734070111 ProcessGroupNCCL.cpp:5138] Guessing device ID based on global rank. This can cause a hang if rank to GPU mapping is heterogeneous. You can specify device_id in init_process_group()
+[rank1]:[W204 01:18:13.737015564 ProcessGroupNCCL.cpp:5138] Guessing device ID based on global rank. This can cause a hang if rank to GPU mapping is heterogeneous. You can specify device_id in init_process_group()
+[rank0]:[W204 01:18:13.741185591 ProcessGroupNCCL.cpp:5138] Guessing device ID based on global rank. This can cause a hang if rank to GPU mapping is heterogeneous. You can specify device_id in init_process_group()
+/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.
+  return func(*args, **kwargs)
+/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.
+  return func(*args, **kwargs)
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.50, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.50, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.50, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.50, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:08<00:26,  8.77s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:08<00:26,  8.93s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:08<00:26,  8.90s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:08<00:26,  8.91s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:17<00:16,  8.49s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:17<00:16,  8.49s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:17<00:17,  8.52s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:17<00:16,  8.49s/it][2026-02-04T01:18:54.412] error: Detected 1 oom_kill event in StepId=1866622.batch. Some of the step tasks have been OOM Killed.

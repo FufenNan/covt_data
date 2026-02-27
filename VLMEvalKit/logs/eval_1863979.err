@@ -1,0 +1,92 @@
+
+Lmod is automatically replacing "gcc/14.2.0" with "gcc-native/12.3".
+
+AWS OFI NCCL Plugin v1.6.0 loaded for CUDA 12.6.1
+This provides network transport ONLY - NCCL library from PyTorch
+Configured for Slingshot11/CXI interconnect
+CUDA 12.6.1 loaded with compatible AWS OFI NCCL plugin v1.6.0
+Plugin provides network transport - NCCL library from PyTorch
+Use with python/miniforge3_pytorch/2.7.0 or equivalent for best compatibility
+
+Activating Modules:
+  1) cray-libsci/24.07.0     2) cray-mpich/8.1.30
+
+
+Lmod is automatically replacing "gcc-native/12.3" with "gcc/14.2.0".
+
+
+Inactive Modules:
+  1) cray-libsci     2) cray-mpich
+
+AWS OFI NCCL Plugin v1.14.2 loaded (Cray PE 25.5)
+This provides network transport ONLY - NCCL library from PyTorch
+Configured for Slingshot11/CXI interconnect
+Built with: libfabric 2.2.0rc1, CUDA 12.9
+Lmod has detected the following error: The following module(s) are unknown:
+"libfabric/2.2.0rc1"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore_cache load "libfabric/2.2.0rc1"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+Executing this command requires loading "libfabric/2.2.0rc1" which failed while
+processing the following module(s):
+
+    Module fullname                 Module Filename
+    ---------------                 ---------------
+    nccl-ofi-plugin/1.14.2-cuda129  /sw/user/modules/nccl-ofi-plugin/1.14.2-cuda129.lua
+
+
+[2026-02-03 03:12:49] WARNING - RUN - run.py: main - 217: --reuse is not set, will not reuse previous (before one day) temporary files
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.50, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:10,  3.63s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:06<00:06,  3.44s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:08<00:02,  2.67s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  1.93s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.37s/it]
+Some weights of the model checkpoint at Wakals/CoVT-7B-seg_depth_dino were not used when initializing Qwen2_5_VLForConditionalGeneration: ['depth_cross_attention.in_proj_bias', 'depth_cross_attention.in_proj_weight', 'depth_cross_attention.out_proj.bias', 'depth_cross_attention.out_proj.weight', 'depth_projection.bias', 'depth_projection.weight', 'depth_query_vectors', 'depth_token_generator.0.bias', 'depth_token_generator.0.weight', 'depth_token_generator.2.bias', 'depth_token_generator.2.weight', 'dino_cross_attention.in_proj_bias', 'dino_cross_attention.in_proj_weight', 'dino_cross_attention.out_proj.bias', 'dino_cross_attention.out_proj.weight', 'dino_projection.bias', 'dino_projection.weight', 'dino_query_vectors', 'sam_cross_attention.in_proj_bias', 'sam_cross_attention.in_proj_weight', 'sam_cross_attention.out_proj.bias', 'sam_cross_attention.out_proj.weight', 'sam_projection.bias', 'sam_projection.weight', 'sam_query_vectors']
+- This IS expected if you are initializing Qwen2_5_VLForConditionalGeneration from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing Qwen2_5_VLForConditionalGeneration from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Infer CoVT-7B-seg_depth_dino/BLINK, Rank 0/1:   0%|          | 0/1901 [00:00<?, ?it/s]Infer CoVT-7B-seg_depth_dino/BLINK, Rank 0/1:   0%|          | 0/1901 [00:03<?, ?it/s]
+[2026-02-03 03:13:12] ERROR - RUN - run.py: main - 492: Model CoVT-7B-seg_depth_dino x Dataset BLINK combination failed: CUDA out of memory. Tried to allocate 91.59 GiB. GPU 0 has a total capacity of 94.50 GiB of which 69.52 GiB is free. Including non-PyTorch memory, this process has 22.80 GiB memory in use. Of the allocated memory 21.78 GiB is allocated by PyTorch, and 320.52 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables), skipping this combination.
+Traceback (most recent call last):
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/run.py", line 340, in main
+    model = infer_data_job(
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/inference.py", line 206, in infer_data_job
+    model = infer_data(
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/inference.py", line 167, in infer_data
+    response = model.generate(message=struct, dataset=dataset_name)
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/vlm/base.py", line 116, in generate
+    return self.generate_inner(message, dataset)
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/vlm/covt_qwen/model.py", line 209, in generate_inner
+    generated_ids = self.model.generate(
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/transformers/generation/utils.py", line 2326, in generate
+    result = self._sample(
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/transformers/generation/utils.py", line 3286, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/transformers/models/qwen2_5_vl/modeling_qwen2_5_vl.py", line 1793, in forward
+    image_embeds = self.visual(pixel_values, grid_thw=image_grid_thw)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/transformers/models/qwen2_5_vl/modeling_qwen2_5_vl.py", line 557, in forward
+    hidden_states = blk(hidden_states, cu_seqlens=cu_seqlens_now, position_embeddings=position_embeddings)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/transformers/models/qwen2_5_vl/modeling_qwen2_5_vl.py", line 350, in forward
+    hidden_states = hidden_states + self.attn(
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/transformers/models/qwen2_5_vl/modeling_qwen2_5_vl.py", line 319, in forward
+    attn_output = F.scaled_dot_product_attention(q, k, v, attention_mask, dropout_p=0.0)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 91.59 GiB. GPU 0 has a total capacity of 94.50 GiB of which 69.52 GiB is free. Including non-PyTorch memory, this process has 22.80 GiB memory in use. Of the allocated memory 21.78 GiB is allocated by PyTorch, and 320.52 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

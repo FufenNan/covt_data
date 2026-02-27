@@ -47,6 +47,28 @@ def process_single_row(row_data, dump_image_dir):
         print(f"Error processing row {row_data.get('id', 'unknown')}: {e}")
         return None
 
+def process_single_row_json(row_data):
+    """Process single row data (JSON only, no image saving)"""
+    try:
+        image_item = row_data["image"]
+        image_path = image_item["path"]
+        image_relpath = row_data["image_relpath"]
+
+        assert image_path == image_relpath, (
+            f"{image_path} is not the same as its realpath {image_relpath}"
+        )
+
+        item = {
+            "id": row_data["id"],
+            "image": image_path,          # 只保留路径（字符串）
+            "conversations": row_data["conversations"],
+        }
+
+        return json.dumps(item, ensure_ascii=False)
+    except Exception as e:
+        print(f"Error processing row {row_data.get('id', 'unknown')}: {e}")
+        return None
+
 
 def process_parquet_file_multithread(file_path, dump_image_dir, output_file, num_threads=48):
     """
@@ -85,7 +107,7 @@ def process_parquet_file_multithread(file_path, dump_image_dir, output_file, num
         with ThreadPoolExecutor(max_workers=num_threads) as executor:
             # Submit all tasks
             futures = {
-                executor.submit(process_single_row, row_data, dump_image_dir): idx
+                executor.submit(process_single_row_json, row_data): idx
                 for idx, row_data in enumerate(row_data_list)
             }
             
@@ -122,23 +144,24 @@ def process_parquet_file_multithread(file_path, dump_image_dir, output_file, num
 def main():
     # ============ Configuration Parameters ============
     # Number of threads per file (for parallel row processing)
-    NUM_THREADS_PER_FILE = 24  # Recommended: 36-64
+    NUM_THREADS_PER_FILE = 2  # Recommended: 36-64
     
     # Number of files to process concurrently (since each file is 20GB, recommended 1-2)
     # 500GB memory / 20GB per file ≈ can process 10+ files simultaneously at most
     # But considering memory overhead during processing, it's recommended to be conservative
-    MAX_CONCURRENT_FILES = 3  # Recommended: 1-3 (1=sequential file processing with parallel rows, 2-3=parallel file processing)
+    MAX_CONCURRENT_FILES = 1  # Recommended: 1-3 (1=sequential file processing with parallel rows, 2-3=parallel file processing)
     # ==================================
     
-    base_dir = "covt/main"
-    dump_image_dir = "covt/images"
-    output_file = "./data.json"
+    base_dir = "/u/yli8/jiaqi/CoVT-Dataset"
+    dump_image_dir = "/u/yli8/jiaqi/CoVT-Dataset/images"
+    output_file = "/u/yli8/jiaqi/CoVT-Dataset/data_81.json"
 
     # Create directory
     if not os.path.exists(dump_image_dir):
         os.makedirs(dump_image_dir)
 
     # Clear output file
+    # if not os.path.exists(output_file):
     open(output_file, "w").close()
 
     # Get all parquet files
@@ -159,6 +182,9 @@ def main():
         # Process files sequentially, but use multithreading within each file
         print("Mode: Sequential file processing with parallel row processing\n")
         for idx, file in enumerate(parquet_files):
+            if idx + 1 <= 40:
+                print(f"[SKIP] [{idx+1}/{len(parquet_files)}] {file}")
+                continue
             print(f"\n[{idx+1}/{len(parquet_files)}] Processing file...")
             count = process_parquet_file_multithread(
                 file, dump_image_dir, output_file, NUM_THREADS_PER_FILE

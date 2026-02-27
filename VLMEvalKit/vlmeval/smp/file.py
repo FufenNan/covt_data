@@ -70,7 +70,7 @@ def LMUDataRoot():
     if 'LMUData' in os.environ and osp.exists(os.environ['LMUData']):
         return os.environ['LMUData']
     home = osp.expanduser('~')
-    root = osp.join(home, 'LMUData')
+    root = osp.join(home, 'jiaqi','LMUData')
     os.makedirs(root, exist_ok=True)
     return root
 

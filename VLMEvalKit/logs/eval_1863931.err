@@ -1,0 +1,64 @@
+
+Lmod is automatically replacing "gcc/14.2.0" with "gcc-native/12.3".
+
+AWS OFI NCCL Plugin v1.6.0 loaded for CUDA 12.6.1
+This provides network transport ONLY - NCCL library from PyTorch
+Configured for Slingshot11/CXI interconnect
+CUDA 12.6.1 loaded with compatible AWS OFI NCCL plugin v1.6.0
+Plugin provides network transport - NCCL library from PyTorch
+Use with python/miniforge3_pytorch/2.7.0 or equivalent for best compatibility
+
+Activating Modules:
+  1) cray-libsci/24.07.0     2) cray-mpich/8.1.30
+
+
+Lmod is automatically replacing "gcc-native/12.3" with "gcc/14.2.0".
+
+
+Inactive Modules:
+  1) cray-libsci     2) cray-mpich
+
+AWS OFI NCCL Plugin v1.14.2 loaded (Cray PE 25.5)
+This provides network transport ONLY - NCCL library from PyTorch
+Configured for Slingshot11/CXI interconnect
+Built with: libfabric 2.2.0rc1, CUDA 12.9
+Lmod has detected the following error: The following module(s) are unknown:
+"libfabric/2.2.0rc1"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore_cache load "libfabric/2.2.0rc1"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+Executing this command requires loading "libfabric/2.2.0rc1" which failed while
+processing the following module(s):
+
+    Module fullname                 Module Filename
+    ---------------                 ---------------
+    nccl-ofi-plugin/1.14.2-cuda129  /sw/user/modules/nccl-ofi-plugin/1.14.2-cuda129.lua
+
+
+[2026-02-03 02:19:18] WARNING - RUN - run.py: main - 217: --reuse is not set, will not reuse previous (before one day) temporary files
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.50, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:14<00:42, 14.32s/it]Fetching 4 files:  50%|█████     | 2/4 [00:14<00:11,  5.98s/it]Fetching 4 files:  75%|███████▌  | 3/4 [00:14<00:03,  3.33s/it]Fetching 4 files: 100%|██████████| 4/4 [00:14<00:00,  3.66s/it]
+[2026-02-03 02:19:44] ERROR - RUN - run.py: main - 492: Model CoVT-7B-seg_depth_dino x Dataset BLINK combination failed: FlashAttention2 has been toggled on, but it cannot be used due to the following error: the package flash_attn seems to be not installed. Please refer to the documentation of https://huggingface.co/docs/transformers/perf_infer_gpu_one#flashattention-2 to install Flash Attention 2., skipping this combination.
+Traceback (most recent call last):
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/run.py", line 340, in main
+    model = infer_data_job(
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/inference.py", line 206, in infer_data_job
+    model = infer_data(
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/inference.py", line 124, in infer_data
+    model = supported_VLM[model_name](**kwargs) if isinstance(model, str) else model
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/vlm/covt_qwen/model.py", line 131, in __init__
+    self.model = MODEL_CLS.from_pretrained(
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/transformers/modeling_utils.py", line 272, in _wrapper
+    return func(*args, **kwargs)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4395, in from_pretrained
+    config = cls._autoset_attn_implementation(
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/transformers/modeling_utils.py", line 2112, in _autoset_attn_implementation
+    cls._check_and_enable_flash_attn_2(
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/transformers/modeling_utils.py", line 2253, in _check_and_enable_flash_attn_2
+    raise ImportError(f"{preface} the package flash_attn seems to be not installed. {install_message}")
+ImportError: FlashAttention2 has been toggled on, but it cannot be used due to the following error: the package flash_attn seems to be not installed. Please refer to the documentation of https://huggingface.co/docs/transformers/perf_infer_gpu_one#flashattention-2 to install Flash Attention 2.

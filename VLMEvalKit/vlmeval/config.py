@@ -1947,7 +1947,8 @@ covt_series = {
     ),
     "CoVT-7B-seg_depth_dino": partial(
         CoVTChat,
-        model_path="Wakals/CoVT-7B-seg_depth_dino",
+        # model_path="Wakals/CoVT-7B-seg_depth_dino",
+        model_path="/u/yli8/jiaqi/CoVT/train/output/lora_merged/lora_stage234_merged",
         min_pixels=1280 * 28 * 28,
         max_pixels=16384 * 28 * 28,
         use_custom_prompt=False,

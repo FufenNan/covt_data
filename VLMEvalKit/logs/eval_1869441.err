@@ -1,0 +1,46 @@
+
+Lmod is automatically replacing "gcc/14.2.0" with "gcc-native/12.3".
+
+AWS OFI NCCL Plugin v1.6.0 loaded for CUDA 12.6.1
+This provides network transport ONLY - NCCL library from PyTorch
+Configured for Slingshot11/CXI interconnect
+CUDA 12.6.1 loaded with compatible AWS OFI NCCL plugin v1.6.0
+Plugin provides network transport - NCCL library from PyTorch
+Use with python/miniforge3_pytorch/2.7.0 or equivalent for best compatibility
+
+Activating Modules:
+  1) cray-libsci/24.07.0     2) cray-mpich/8.1.30
+
+
+Lmod is automatically replacing "gcc-native/12.3" with "gcc/14.2.0".
+
+
+Inactive Modules:
+  1) cray-libsci     2) cray-mpich
+
+AWS OFI NCCL Plugin v1.14.2 loaded (Cray PE 25.5)
+This provides network transport ONLY - NCCL library from PyTorch
+Configured for Slingshot11/CXI interconnect
+Built with: libfabric 2.2.0rc1, CUDA 12.9
+Lmod has detected the following error: The following module(s) are unknown:
+"libfabric/2.2.0rc1"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore_cache load "libfabric/2.2.0rc1"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+Executing this command requires loading "libfabric/2.2.0rc1" which failed while
+processing the following module(s):
+
+    Module fullname                 Module Filename
+    ---------------                 ---------------
+    nccl-ofi-plugin/1.14.2-cuda129  /sw/user/modules/nccl-ofi-plugin/1.14.2-cuda129.lua
+
+
+[2026-02-05 01:32:25] WARNING - RUN - run.py: main - 218: --reuse is not set, will not reuse previous (before one day) temporary files
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.50, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:04,  1.67s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:01,  1.05it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.49it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.58it/s]
+Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   0%|          | 0/1080 [00:00<?, ?it/s]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   0%|          | 1/1080 [00:10<3:04:59, 10.29s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   0%|          | 2/1080 [00:11<1:24:42,  4.71s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   0%|          | 3/1080 [00:13<1:09:16,  3.86s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   0%|          | 4/1080 [00:16<1:02:31,  3.49s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   0%|          | 5/1080 [00:19<58:11,  3.25s/it]  Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   1%|          | 6/1080 [00:20<43:09,  2.41s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   1%|          | 7/1080 [00:23<45:35,  2.55s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   1%|          | 8/1080 [00:26<47:06,  2.64s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   1%|          | 9/1080 [00:29<48:52,  2.74s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   1%|          | 10/1080 [00:32<49:57,  2.80s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   1%|          | 11/1080 [00:32<38:56,  2.19s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   1%|          | 12/1080 [00:35<42:21,  2.38s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   1%|          | 13/1080 [00:38<44:43,  2.52s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   1%|▏         | 14/1080 [00:41<46:21,  2.61s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   1%|▏         | 15/1080 [00:44<47:36,  2.68s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   1%|▏         | 16/1080 [00:47<49:09,  2.77s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   2%|▏         | 17/1080 [00:52<1:00:17,  3.40s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   2%|▏         | 18/1080 [00:55<58:18,  3.29s/it]  Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   2%|▏         | 19/1080 [00:57<56:24,  3.19s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   2%|▏         | 20/1080 [01:00<55:07,  3.12s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   2%|▏         | 21/1080 [01:03<54:39,  3.10s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   2%|▏         | 22/1080 [01:04<42:30,  2.41s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   2%|▏         | 23/1080 [01:07<45:10,  2.56s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   2%|▏         | 24/1080 [01:10<46:57,  2.67s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   2%|▏         | 25/1080 [01:13<48:14,  2.74s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   2%|▏         | 26/1080 [01:16<48:53,  2.78s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   2%|▎         | 27/1080 [01:19<49:49,  2.84s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   3%|▎         | 28/1080 [01:22<49:55,  2.85s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   3%|▎         | 29/1080 [01:25<50:24,  2.88s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   3%|▎         | 30/1080 [01:28<50:43,  2.90s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   3%|▎         | 31/1080 [01:31<51:01,  2.92s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   3%|▎         | 32/1080 [01:34<51:11,  2.93s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   3%|▎         | 33/1080 [01:37<51:20,  2.94s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   3%|▎         | 34/1080 [01:37<40:03,  2.30s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   3%|▎         | 35/1080 [01:40<42:53,  2.46s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   3%|▎         | 36/1080 [01:43<44:52,  2.58s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   3%|▎         | 37/1080 [01:46<46:41,  2.69s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   4%|▎         | 38/1080 [01:49<48:05,  2.77s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   4%|▎         | 39/1080 [01:50<37:45,  2.18s/it]Infer CoVT-7B-seg_depth_dino/CV-Bench-3D, Rank 0/1:   4%|▎         | 40/1080 [01:53<41:15,  2.38s/it][2026-02-05T01:34:40.368] error: *** JOB 1869441 ON gh087 CANCELLED AT 2026-02-05T01:34:40 DUE to SIGNAL Terminated ***

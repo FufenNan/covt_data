@@ -1,0 +1,78 @@
+
+Lmod is automatically replacing "gcc/14.2.0" with "gcc-native/12.3".
+
+AWS OFI NCCL Plugin v1.6.0 loaded for CUDA 12.6.1
+This provides network transport ONLY - NCCL library from PyTorch
+Configured for Slingshot11/CXI interconnect
+CUDA 12.6.1 loaded with compatible AWS OFI NCCL plugin v1.6.0
+Plugin provides network transport - NCCL library from PyTorch
+Use with python/miniforge3_pytorch/2.7.0 or equivalent for best compatibility
+
+Activating Modules:
+  1) cray-libsci/24.07.0     2) cray-mpich/8.1.30
+
+
+Lmod is automatically replacing "gcc-native/12.3" with "gcc/14.2.0".
+
+
+Inactive Modules:
+  1) cray-libsci     2) cray-mpich
+
+AWS OFI NCCL Plugin v1.14.2 loaded (Cray PE 25.5)
+This provides network transport ONLY - NCCL library from PyTorch
+Configured for Slingshot11/CXI interconnect
+Built with: libfabric 2.2.0rc1, CUDA 12.9
+Lmod has detected the following error: The following module(s) are unknown:
+"libfabric/2.2.0rc1"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore_cache load "libfabric/2.2.0rc1"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+Executing this command requires loading "libfabric/2.2.0rc1" which failed while
+processing the following module(s):
+
+    Module fullname                 Module Filename
+    ---------------                 ---------------
+    nccl-ofi-plugin/1.14.2-cuda129  /sw/user/modules/nccl-ofi-plugin/1.14.2-cuda129.lua
+
+
+Traceback (most recent call last):
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/run.py", line 42, in <module>
+    from vlmeval.config import supported_VLM
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/__init__.py", line 13, in <module>
+    from .api import *
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/api/__init__.py", line 4, in <module>
+    from .qwen_vl_api import QwenVLWrapper, QwenVLAPI, Qwen2VLAPI
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/api/qwen_vl_api.py", line 8, in <module>
+    from vlmeval.vlm.qwen2_vl.prompt import Qwen2VLPromptMixin
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/vlm/__init__.py", line 5, in <module>
+    from .aria import Aria
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/vlm/aria.py", line 8, in <module>
+    from .base import BaseModel
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/vlm/base.py", line 2, in <module>
+    from ..dataset import img_root_map, DATASET_TYPE
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/dataset/__init__.py", line 81, in <module>
+    from .GUI.screenspot_v2 import ScreenSpotV2
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/dataset/GUI/screenspot_v2.py", line 14, in <module>
+    from ipdb import set_trace as st
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/ipdb/__init__.py", line 7, in <module>
+    from ipdb.__main__ import set_trace, post_mortem, pm, run, iex        # noqa
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/ipdb/__main__.py", line 15, in <module>
+    from IPython import get_ipython
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/IPython/__init__.py", line 55, in <module>
+    from .terminal.embed import embed
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/IPython/terminal/embed.py", line 15, in <module>
+    from IPython.core.interactiveshell import DummyMod, InteractiveShell
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/IPython/core/interactiveshell.py", line 110, in <module>
+    from IPython.core.history import HistoryManager
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/site-packages/IPython/core/history.py", line 10, in <module>
+    import sqlite3
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/sqlite3/__init__.py", line 57, in <module>
+    from sqlite3.dbapi2 import *
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/sqlite3/dbapi2.py", line 27, in <module>
+    from _sqlite3 import *
+ImportError: /usr/lib64/libstdc++.so.6: version `CXXABI_1.3.15' not found (required by /u/yli8/.conda/envs/vlmeval/lib/python3.10/lib-dynload/../.././libicui18n.so.78)

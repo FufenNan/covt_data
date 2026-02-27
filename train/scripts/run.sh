@@ -4,13 +4,13 @@ MODEL_NAME="${MODEL_NAME:-Qwen/Qwen2.5-VL-7B-Instruct}"
 MODEL_PATH="${MODEL_PATH:-Qwen/Qwen2.5-VL-7B-Instruct}"
 
 export MASTER_PORT="${MASTER_PORT:-22810}"
-export CUDA_VISIBLE_DEVICES="${GPU_IDS:-0,1,2,3,4,5,6,7}"
+# export CUDA_VISIBLE_DEVICES="${GPU_IDS:-0,1,2,3,4,5,6,7}"
 export PYTHONPATH=src:$PYTHONPATH
 export WANDB_PROJECT="${WANDB_PROJECT:-Qwen_BASE}"
 RUN_NAME="${RUN_NAME:-test_setup}"
 
 BATCH_PER_DEVICE="${BATCH_PER_DEVICE:-1}"
-NUM_DEVICES="${NUM_DEVICES:-8}"
+NUM_DEVICES="${NUM_DEVICES:-4}"
 
 GLOBAL_BATCH_SIZE="${GLOBAL_BATCH_SIZE:-8}"
 GRAD_ACCUM_STEPS=$((GLOBAL_BATCH_SIZE / (BATCH_PER_DEVICE * NUM_DEVICES)))
@@ -26,7 +26,7 @@ OUTPUT_DIR="${OUTPUT_DIR:-output/lora_vision_test/default_output_dir}"
 
 DATA_PATH="${DATA_PATH:-dataset/covt_dataset.json}"
 IMAGE_FOLDER="${IMAGE_FOLDER:-dataset/image_dir}"
-
+VISUAL_MODEL_ID="['sam', 'depth', 'dino']"
 VISUAL_MODEL_ID="${VISUAL_MODEL_ID:-['sam', 'depth', 'dino']}"
 
 deepspeed \
@@ -51,7 +51,7 @@ deepspeed \
     --tune_merger False \
     --bf16 True \
     --fp16 False \
-    --disable_flash_attn2 False \
+    --disable_flash_attn2 True \
     --output_dir "$OUTPUT_DIR" \
     --max_steps "$MAX_STEPS" \
     --per_device_train_batch_size $BATCH_PER_DEVICE \

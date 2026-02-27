@@ -9,5 +9,5 @@ python -m pip install --upgrade pip
 echo ">>> Installing VLMEvalKit dependencies"
 pip install -e .
 pip install datasets scikit-learn
-pip install flash-attn==2.7.4.post1 --no-build-isolation --no-cache-dir
+# pip install flash-attn==2.7.4.post1 --no-build-isolation --no-cache-dir
 echo ">>> Installation finished."

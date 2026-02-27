@@ -118,7 +118,7 @@ class CoVTChat(CoVTPrompt, BaseModel):
         # If only one process and GPU memory is less than 40GB
         if '72b' in self.model_path.lower():
             self.model = MODEL_CLS.from_pretrained(
-                model_path, torch_dtype=torch.float16, device_map=split_model(), attn_implementation='flash_attention_2'
+                model_path, torch_dtype=torch.float16, device_map=split_model(), attn_implementation='sdpa'
             )
             self.model.eval()
         # elif auto_split_flag():
@@ -129,7 +129,7 @@ class CoVTChat(CoVTPrompt, BaseModel):
         #     )
         else:
             self.model = MODEL_CLS.from_pretrained(
-                model_path, torch_dtype=torch.float16, device_map='cpu', attn_implementation='flash_attention_2'
+                model_path, torch_dtype=torch.float16, device_map='cpu', attn_implementation='sdpa'
             )
             self.model.cuda().eval()
 

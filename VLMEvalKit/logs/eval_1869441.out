@@ -1,0 +1,180 @@
+Job started at: Thu 05 Feb 2026 01:30:01 AM CST
+Running on node: gh087.hsn.cm.delta.internal.ncsa.edu
+Job ID: 1869441
+GPU devices: 0
+Thu Feb  5 01:30:02 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 550.163.01             Driver Version: 550.163.01     CUDA Version: 12.6     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GH200 120GB             On  |   00000009:01:00.0 Off |                    0 |
+| N/A   17C    P0             79W /  900W |     119MiB /  97871MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Please install pyav to use video processing functions.
+infer_data: built model CoVT-7B-seg_depth_dino on rank 0/1
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> The answer is A pillow </answer>
+[0m
+The answer is A pillow
+[31mA books
+[0m
+A books
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> A books </answer>
+[0m
+A books
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> The answer is B shelves </answer>
+[0m
+The answer is B shelves
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> B sofa </answer>
+[0m
+B sofa
+[31mB chair
+[0m
+B chair
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> A table </answer>
+[0m
+A table
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> B lamp </answer>
+[0m
+B lamp
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> The answer is A table </answer>
+[0m
+The answer is A table
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> The answer is A door </answer>
+[0m
+The answer is A door
+[31mA books
+[0m
+A books
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> A books </answer>
+[0m
+A books
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> B books </answer>
+[0m
+B books
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> B pillow </answer>
+[0m
+B pillow
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> B table </answer>
+[0m
+B table
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> The answer is B mirror </answer>
+[0m
+The answer is B mirror
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> B table </answer>
+[0m
+B table
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> B books </answer>
+[0m
+B books
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> B door </answer>
+[0m
+B door
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> B chair </answer>
+[0m
+B chair
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> The answer is A lamp </answer>
+[0m
+The answer is A lamp
+[31mB pillow
+[0m
+B pillow
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> B chair </answer>
+[0m
+B chair
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> B sofa </answer>
+[0m
+B sofa
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> A books </answer>
+[0m
+A books
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> A chair </answer>
+[0m
+A chair
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> The answer is B table </answer>
+[0m
+The answer is B table
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> B table </answer>
+[0m
+B table
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> The answer is B books </answer>
+[0m
+The answer is B books
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> The answer is A table </answer>
+[0m
+The answer is A table
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> The answer is B lamp </answer>
+[0m
+The answer is B lamp
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> The answer is A pillow </answer>
+[0m
+The answer is A pillow
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> The answer is B chair </answer>
+[0m
+The answer is B chair
+[31mB chair
+[0m
+B chair
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> A books </answer>
+[0m
+A books
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> B books </answer>
+[0m
+B books
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> The answer is B shelves </answer>
+[0m
+The answer is B shelves
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> The answer is A table </answer>
+[0m
+The answer is A table
+[31mB towel
+[0m
+B towel
+[31m<think> Because the segmentation of the image is <|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|><|sam_pad|>, the depth map of the image is <|depth_pad|><|depth_pad|><|depth_pad|><|depth_pad|>, and the perception feature of the image is <|dino_pad|><|dino_pad|><|dino_pad|><|dino_pad|>.  </think>
+<answer> A books </answer>
+[0m
+A books

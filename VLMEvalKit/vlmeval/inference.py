@@ -25,7 +25,8 @@ def infer_data_api(model, work_dir, model_name, dataset, index_set=None, api_npr
     data = dataset.data
     if index_set is not None:
         data = data[data['index'].isin(index_set)]
-
+    # print(f'infer_data_api: built model {model_name} on rank {rank}/{world_size}')
+    # import pdb; pdb.set_trace()
     model = supported_VLM[model_name]() if isinstance(model, str) else model
     assert getattr(model, 'is_api', False)
     if hasattr(model, 'set_dump_image'):
@@ -122,6 +123,7 @@ def infer_data(model, model_name, work_dir, dataset, out_file, verbose=False, ap
     # To bypass this problem, we unset `WORLD_SIZE` before building the model to not use TP parallel.
     ws_bak = os.environ.pop('WORLD_SIZE', None)
     model = supported_VLM[model_name](**kwargs) if isinstance(model, str) else model
+    # print(f'infer_data: built model {model_name} on rank {rank}/{world_size}')
     if ws_bak:
         os.environ['WORLD_SIZE'] = ws_bak
 

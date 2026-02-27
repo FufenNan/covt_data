@@ -56,6 +56,7 @@ def build_model_from_config(cfg, model_name, use_vllm=False):
     ws_bak = os.environ.pop('WORLD_SIZE', None)
 
     config = cp.deepcopy(cfg[model_name])
+    print(f'Building model {model_name} with config: {config}')
     if use_vllm:
         config['use_vllm'] = use_vllm
     if 'class' not in config:
@@ -262,7 +263,6 @@ def main():
 
         if not osp.exists(pred_root):
             os.makedirs(pred_root, exist_ok=True)
-
         if use_config:
             model = build_model_from_config(cfg['model'], model_name, args.use_vllm)
 
@@ -293,7 +293,6 @@ def main():
                         if RANK == 0:
                             dataset = build_dataset(dataset_name, **dataset_kwargs)
                         dist.barrier()
-
                     dataset = build_dataset(dataset_name, **dataset_kwargs)
                     if dataset is None:
                         logger.error(f'Dataset {dataset_name} is not valid, will be skipped. ')

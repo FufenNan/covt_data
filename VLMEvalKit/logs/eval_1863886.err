@@ -1,0 +1,106 @@
+
+Lmod is automatically replacing "gcc/14.2.0" with "gcc-native/12.3".
+
+AWS OFI NCCL Plugin v1.6.0 loaded for CUDA 12.6.1
+This provides network transport ONLY - NCCL library from PyTorch
+Configured for Slingshot11/CXI interconnect
+CUDA 12.6.1 loaded with compatible AWS OFI NCCL plugin v1.6.0
+Plugin provides network transport - NCCL library from PyTorch
+Use with python/miniforge3_pytorch/2.7.0 or equivalent for best compatibility
+
+Activating Modules:
+  1) cray-libsci/24.07.0     2) cray-mpich/8.1.30
+
+
+Lmod is automatically replacing "gcc-native/12.3" with "gcc/14.2.0".
+
+
+Inactive Modules:
+  1) cray-libsci     2) cray-mpich
+
+AWS OFI NCCL Plugin v1.14.2 loaded (Cray PE 25.5)
+This provides network transport ONLY - NCCL library from PyTorch
+Configured for Slingshot11/CXI interconnect
+Built with: libfabric 2.2.0rc1, CUDA 12.9
+Lmod has detected the following error: The following module(s) are unknown:
+"libfabric/2.2.0rc1"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore_cache load "libfabric/2.2.0rc1"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+Executing this command requires loading "libfabric/2.2.0rc1" which failed while
+processing the following module(s):
+
+    Module fullname                 Module Filename
+    ---------------                 ---------------
+    nccl-ofi-plugin/1.14.2-cuda129  /sw/user/modules/nccl-ofi-plugin/1.14.2-cuda129.lua
+
+
+[2026-02-03 01:48:08] WARNING - RUN - run.py: main - 217: --reuse is not set, will not reuse previous (before one day) temporary files
+BLINK.tsv: 0.00B [00:00, ?B/s]BLINK.tsv: 0.00B [00:02, ?B/s]
+[2026-02-03 01:48:10] WARNING - file.py: download_file - 287: <class 'urllib.error.URLError'>: <urlopen error [Errno -3] Temporary failure in name resolution>
+[2026-02-03 01:48:10] ERROR - RUN - run.py: main - 492: Model CoVT-7B-seg_depth_dino x Dataset BLINK combination failed: Failed to download https://opencompass.openxlab.space/utils/VLMEval/BLINK.tsv, skipping this combination.
+Traceback (most recent call last):
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/urllib/request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/http/client.py", line 1283, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/http/client.py", line 1329, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/http/client.py", line 1278, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/http/client.py", line 1038, in _send_output
+    self.send(msg)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/http/client.py", line 976, in send
+    self.connect()
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/http/client.py", line 1448, in connect
+    super().connect()
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/http/client.py", line 942, in connect
+    self.sock = self._create_connection(
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/socket.py", line 836, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/socket.py", line 967, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/smp/file.py", line 284, in download_file
+    urllib.request.urlretrieve(url, filename=filename, reporthook=t.update_to)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/urllib/request.py", line 241, in urlretrieve
+    with contextlib.closing(urlopen(url, data)) as fp:
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/urllib/request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/urllib/request.py", line 1391, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+  File "/u/yli8/.conda/envs/vlmeval/lib/python3.10/urllib/request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno -3] Temporary failure in name resolution>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/run.py", line 297, in main
+    dataset = build_dataset(dataset_name, **dataset_kwargs)
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/dataset/__init__.py", line 303, in build_dataset
+    return cls(dataset=dataset_name, **kwargs)
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/dataset/image_base.py", line 46, in __init__
+    data = self.load_data(dataset)
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/dataset/image_base.py", line 180, in load_data
+    return self.prepare_tsv(url, file_md5)
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/dataset/image_base.py", line 111, in prepare_tsv
+    download_file(url, data_path)
+  File "/work/nvme/bdqf/william/jiaqi/CoVT/VLMEvalKit/vlmeval/smp/file.py", line 298, in download_file
+    raise Exception(f'Failed to download {url}')
+Exception: Failed to download https://opencompass.openxlab.space/utils/VLMEval/BLINK.tsv
